@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aliens>
+<alien aid="A1">
+ <name>Mono</name>
+ <salary>3000</salary>
+</alien>
+
+<alien aid="A2">
+ <name>Mono</name>
+ <salary>3000</salary>
+</alien>
+</aliens> 
