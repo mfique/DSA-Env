@@ -1,83 +1,92 @@
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
-struct Node {
-public:
-    int data;
-    Node* next;
-Node(int data){
-this->data=data;
-this->next=NULL;
-}
+class Node {
+	public:
+		int data;
+		Node*next;
+		Node(int x) {
+		this->data = x;
+		next = NULL;
+		}
+};
+class Queue {
+	Node*head;
+	Node*tail;
+	int size;
+	
+	public:
+		Queue() {
+			head= NULL;
+			tail = NULL;
+			size = 0;
+		}
+		int getSize(){
+			return size;
+		}
+		int count() {
+			
+		}
+		boolisEmpty(){
+			return size == 0;
+		}
+		
+		void enqueue (int ele) {
+			Node* n = new Node(ele);
+			if(head == NULL){
+				head = n;
+				tail = n;
+			} else {
+				tail->next = n;
+				tail = n;
+			}
+			size ++;
+		}
+		
+		void dequeue(){
+			if(isEmpty()){
+				return;
+			}
+		Node*temp = head;
+		head =  head->next;
+		temp->next = NULL;
+		delete temp;
+		size-;
+		}
+		
+		int front(){
+			if(isEmpty()){
+				return 0;
+			}
+			return head->data;
+		}
+		
+		void display(){
+			Node *temp = head;
+			while (temp!=NULL){
+				cout<<temp->data<<"";
+				temp=temp->next;
+			}
+		}
 };
 
-
-Node* insertAtHead(Node *head, int data){
-         
-        Node* n = new Node(data);
-        n->data=data;
-        n->next = head;
-        head = n;
-        return head;
+int main(){
+	Queue q;
+	q enqueue(10);
+	q enqueue(20);
+	q enqueue(30);
+	q enqueue(40);
+	q enqueue(50);
+	q enqueue(60);
+	q enqueue(70);
+	q display();
+	cout<<q.front()<<endl;
+	q dequeue();
+	q dequeue();
+	q dequeue();
+	
+	cout<<q.front()<<endl;
+	cout<<q.getSize()<<endl;
+	cout<<q.isEmpty()<<endl;
+	q.enqueue(60);
+	q.enqueue(70);
 }
-Node* insertAtPos(Node *head, int i, int data){
-      if(i<0){
-        return head;
-      }
-      if(i==0){
-        Node* n = new Node(data);
-        n->next = head;
-        head = n;
-        return head;
-      }
-      Node *temp = head;
-      int count = 1;
-      while(count<=i-1 && head!=NULL){
-        head = head->next;
-        count++;
-      }
-      if(head){
-        Node *n = new Node(data);
-        n->next = head->next;
-        head->next = n;
-     
-        return temp;
-      }
-      return temp;
-}
-void display(Node* n)
-{
-    while (n != NULL) {
-        cout << n->data << " ";
-        n = n->next;
-    }
-cout<<endl;
-}
- // Main
-int main()
-{
-   Node* root = NULL;
-    Node* second = NULL;
-    Node* third = NULL;
-    root = new Node(1);
-    second = new Node(2);
-    third = new Node(3);
-    root->next=second;
-    second->next=third;
-   Node *head=root;
-    cout<<"Initial "<<endl;
-    display(head);
-    head=insertAtPos(head,2,250);
-    display(head);
-    cout<<"After adding at 2"<<endl;
-     head=insertAtPos(head,4,200);
-    display(head);
-    cout<<"After adding at 4"<<endl;
-     head=insertAtPos(head,0,150);
-    display(head);
-    cout<<"After adding at 0"<<endl;
-    head=insertAtPos(head,6,550);
-    display(head);
-    cout<<"After adding at 6"<<endl;
-    return 0;
-}
-
